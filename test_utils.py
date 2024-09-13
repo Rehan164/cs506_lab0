@@ -9,23 +9,23 @@ def test_dot_product():
     result = dot_product(vector1, vector2)
     
     assert result == 32, f"Expected 32, but got {result}"
-
+    
 def test_cosine_similarity():
-    vector1 = np.array([1, 0, 0])
-    vector2 = np.array([0, 1, 0])
+    vector1 = np.array([1, 2, 3])
+    vector2 = np.array([4, 5, 6])
     
     result = cosine_similarity(vector1, vector2)
     
-    expected_result = 0.0  # Cosine similarity between orthogonal vectors
+    expected_result = np.dot(vector1, vector2) / (np.linalg.norm(vector1) * np.linalg.norm(vector2))
     
     assert np.isclose(result, expected_result), f"Expected {expected_result}, but got {result}"
 
 def test_nearest_neighbor():
-    points = np.array([[1, 2], [3, 4], [5, 6]])
-    target = np.array([4, 4])
+    point = np.array([1, 2])
+    points = np.array([[1, 1], [3, 3], [4, 4]])
     
-    result = nearest_neighbor(points, target)
+    result = nearest_neighbor(point, points)
     
-    expected_index = 1  # Index of [3, 4], the closest point to [4, 4]
+    expected_index = 0
     
     assert result == expected_index, f"Expected index {expected_index}, but got {result}"
